@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mengarahkan ke FPTS</title>
+  <script>
+    (function () {
+      var routes = {
+        'home': 'home',
+        'activities': 'activities',
+        'daftar-kegiatan': 'activities',
+        'join': 'join',
+        'join-us': 'join',
+        'crt': 'crt',
+        'communication-response-team': 'crt',
+        'disaster': 'disaster',
+        'peta-analisis-bencana': 'disaster',
+        'missing': 'missing',
+        'missing-person-database': 'missing',
+        'sigap': 'sigap',
+        'admin': 'admin',
+        'admin-console': 'admin'
+      };
+      var parts = window.location.pathname.split('/').filter(Boolean);
+      var last = (parts[parts.length - 1] || '').toLowerCase();
+      var basePath = window.location.pathname.endsWith('/')
+        ? window.location.pathname + 'Index.html'
+        : window.location.pathname.replace(/[^/]*$/, 'Index.html');
+      var target = new URL(basePath, window.location.origin);
+      target.search = window.location.search;
+      target.hash = window.location.hash || (routes[last] ? '#' + routes[last] : '#home');
+      window.location.replace(target.toString());
+    })();
+  </script>
+</head>
+<body>
+  <noscript>
+    <p>Halaman tidak ditemukan. Buka <a href="./Index.html">website FPTS</a>.</p>
+  </noscript>
+</body>
+</html>
